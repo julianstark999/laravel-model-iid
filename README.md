@@ -71,13 +71,6 @@ php artisan iid:generate "App\Models\Post"
 composer test
 ```
 
-### Supported Versions
-
-| Laravel | Package |
-| ------- |:-------:|
-| 7.x     | 1.x     |
-| 8.x     | 2.x     |
-
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
