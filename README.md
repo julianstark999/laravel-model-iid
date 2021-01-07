@@ -62,7 +62,7 @@ php artisan iid:generate "App\Models\Post"
 The `iid:init` command initializes the iids for existing models by using the id column
 
 ```bash
-php artisan iid:generate "App\Models\Post"
+php artisan iid:init "App\Models\Post"
 ```
 
 ### Testing
