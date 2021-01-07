@@ -1,0 +1,54 @@
+{
+    "name": "julianstark999/laravel-model-iid",
+    "description": "Laravel Model Iid",
+    "version": "0.0.1",
+    "keywords": [
+        "Julian Stark",
+        "julianstark999",
+        "laravel-model-iid",
+        "laravel",
+        "iid"
+    ],
+    "homepage": "https://github.com/julianstark999/laravel-model-iid",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Julian Stark",
+            "email": "julianstark1@googlemail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "laravel/framework": "^6.0|^7.0|^8.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "JulianStark999\\LaravelModelIid\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JulianStark999\\LaravelModelIid\\LaravelModelIidServiceProvider"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JulianStark999\\LaravelModelIid\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "lint": "php-cs-fixer fix -v"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
