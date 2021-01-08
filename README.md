@@ -2,7 +2,7 @@
 
 # Laravel Model Iid
 
-Laravel Model Iid provides the functionality to have an autoincrement primary key and an iid column to display which is incremented by a defined `$iidColumn`
+**Laravel Model Iid** provides the functionality to have an additional internal ID (displayed in the UI), that's unique in the scope of a relationship defined by the `$iidColumn`
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
 [![Total Downloads](https://img.shields.io/packagist/dt/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
