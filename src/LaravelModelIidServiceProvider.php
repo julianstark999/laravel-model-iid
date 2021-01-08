@@ -4,6 +4,7 @@ namespace JulianStark999\LaravelModelIid;
 
 use Illuminate\Support\ServiceProvider;
 use JulianStark999\LaravelModelIid\Console\Generate;
+use JulianStark999\LaravelModelIid\Console\Init;
 
 class LaravelModelIidServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,8 @@ class LaravelModelIidServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                                Generate::class,
+                Init::class,
+                Generate::class,
             ]);
         }
     }
