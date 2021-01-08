@@ -4,6 +4,7 @@ namespace JulianStark999\LaravelModelIid\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use JulianStark999\LaravelModelIid\Tests\Database\Factories\PostFactory;
 use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 class Post extends Model
@@ -15,10 +16,15 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $guarded  = [];
+    protected $guarded = [];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected static function newFactory()
+    {
+        return PostFactory::new();
     }
 }

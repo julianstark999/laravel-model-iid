@@ -8,10 +8,15 @@ use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 class Init extends Command
 {
+    /** @var string */
     protected $signature = 'iid:init {className}';
 
-    protected $description = 'initialize iid with the id';
+    /** @var string */
+    protected $description = 'initialize iid for a model';
 
+    /**
+     * @return int
+     */
     public function handle()
     {
         $className = $this->argument('className');
@@ -19,7 +24,7 @@ class Init extends Command
         if (! class_exists($className)) {
             $this->error('model class does not exists');
 
-            return;
+            return -1;
         }
 
         $modelClass = new $className();
@@ -28,31 +33,24 @@ class Init extends Command
         if (! array_key_exists(HasIidColumn::class, $usesTrait)) {
             $this->error('model class does not uses trait');
 
-            return;
+            return -2;
         }
 
         $iidColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($modelClass->getTable(), 'iid');
         if (! $iidColumnExist) {
             $this->error('model class does not have an iid column');
 
-            return;
-        }
-
-        $idColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($modelClass->getTable(), 'id');
-        if (! $idColumnExist) {
-            $this->error('model class does not have an id column');
-
-            return;
+            return -3;
         }
 
         $this->info('Initializing iids started');
 
-        $modelClass->whereNull('iid')->cursor()->each(function ($row) {
-            $row->update([
-                'iid' => $row->id,
-            ]);
-        });
+        $modelClass->whereNull('iid')->cursor()->each(fn ($row) => $row->update([
+            'iid' => $row[$idColumn],
+        ]));
 
         $this->info('Initializing iids finished');
+
+        return 0;
     }
 }

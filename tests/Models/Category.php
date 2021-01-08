@@ -4,6 +4,7 @@ namespace JulianStark999\LaravelModelIid\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use JulianStark999\LaravelModelIid\Tests\Database\Factories\CategoryFactory;
 
 class Category extends Model
 {
@@ -16,5 +17,10 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    protected static function newFactory()
+    {
+        return CategoryFactory::new();
     }
 }
