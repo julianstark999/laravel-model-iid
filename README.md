@@ -1,8 +1,8 @@
 <p align="center"><img src="https://banners.beyondco.de/laravel-model-iid.png?theme=light&packageManager=composer+require&packageName=julianstark999%2Flaravel-model-iid&pattern=circuitBoard&style=style_2&description=&md=1&showWatermark=0&fontSize=100px&images=database&widths=350&heights=350" alt="Social Card of Laravel Model Iid"></p>
 
-# Laravel Iid
+# Laravel Model Iid
 
-Laravel Model Iid provides the functionality to have an autoincrement primary key and an iid column to display which is incremented by a defined $iidColumn
+Laravel Model Iid provides the functionality to have an autoincrement primary key and an iid column to display which is incremented by a defined `$iidColumn`
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
 [![Total Downloads](https://img.shields.io/packagist/dt/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
@@ -10,7 +10,6 @@ Laravel Model Iid provides the functionality to have an autoincrement primary ke
 ## Installation
 
 You can install the package via composer:
-
 ```bash
 composer require julianstark999/laravel-model-iid
 ```
@@ -41,7 +40,7 @@ class Post extends Model
 ### Migration
 
 ```php
-$table->integer('iid')->nullable();
+$table->unsignedInteger('iid')->nullable();
 
 // optional
 $table->unique(['category_id', 'iid']);
@@ -52,7 +51,6 @@ $table->unique(['category_id', 'iid']);
 #### iid:generate
 
 The `iid:generate` command generates missing iids for existing models
-
 ```bash
 php artisan iid:generate "App\Models\Post"
 ```
@@ -60,10 +58,11 @@ php artisan iid:generate "App\Models\Post"
 #### iid:init
 
 The `iid:init` command initializes the iids for existing models by using the id column
-
 ```bash
 php artisan iid:init "App\Models\Post"
 ```
+*Recommended using if you already use the `id` column for display*
+
 
 ### Testing
 
