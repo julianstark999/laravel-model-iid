@@ -45,9 +45,11 @@ class Init extends Command
 
         $this->info('Initializing iids started');
 
-        $modelClass->whereNull('iid')->cursor()->each(fn ($row) => $row->update([
-            'iid' => $row[$idColumn],
-        ]));
+        $modelClass->whereNull('iid')->cursor()->each(function ($row) {
+            $row->update([
+                'iid' => $row->id,
+            ]);
+        });
 
         $this->info('Initializing iids finished');
 
