@@ -18,7 +18,7 @@ trait HasIidColumn
             $iidColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($model->getTable(), 'iid');
 
             if (! $iidColumnExist) {
-                throw new Exception('The `iid` column was not found in `' . $model->getTable() . '` table.');
+                throw new Exception('The `iid` column was not found in `'.$model->getTable().'` table.');
             }
 
             $latestModel = $model->where($model->iidColumn, '=', $model[$model->iidColumn])
