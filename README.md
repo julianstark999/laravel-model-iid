@@ -42,23 +42,27 @@ class Post extends Model
 ```php
 $table->unsignedInteger('iid')->nullable();
 
-// optional
+// optional (should only be defined for new tables or after generating iids for existing entries)
 $table->unique(['category_id', 'iid']);
 ```
 
 ### Commands
 
 #### iid:generate
-
 The `iid:generate` command generates missing iids for existing models
 ```bash
+php artisan iid:generate {className}
+
+# example
 php artisan iid:generate "App\Models\Post"
 ```
 
 #### iid:init
-
 The `iid:init` command initializes the iids for existing models by using the id column
 ```bash
+php artisan iid:generate {className}
+
+# example
 php artisan iid:init "App\Models\Post"
 ```
 *Recommended using if you already use the `id` column for display*

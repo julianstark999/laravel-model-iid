@@ -8,10 +8,15 @@ use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 class Generate extends Command
 {
+    /** @var string */
     protected $signature = 'iid:generate {className}';
 
-    protected $description = 'Generates missing iids';
+    /** @var string */
+    protected $description = 'generates missing iids for a model';
 
+    /**
+     * @return int
+     */
     public function handle()
     {
         $className = $this->argument('className');
@@ -19,7 +24,7 @@ class Generate extends Command
         if (! class_exists($className)) {
             $this->error('model class does not exists');
 
-            return;
+            return -1;
         }
 
         $modelClass = new $className();
@@ -28,14 +33,14 @@ class Generate extends Command
         if (! array_key_exists(HasIidColumn::class, $usesTrait)) {
             $this->error('model class does not use trait');
 
-            return;
+            return -2;
         }
 
         $iidColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($modelClass->getTable(), 'iid');
         if (! $iidColumnExist) {
             $this->error('model class does not support iid');
 
-            return;
+            return -3;
         }
 
         $this->info('Generating iids started');
@@ -48,9 +53,11 @@ class Generate extends Command
 
             $row->update([
                 'iid' => $latestModel ? $latestModel->iid + 1 : 1,
-                           ]);
+            ]);
         });
 
         $this->info('Generating iids finished');
+
+        return 0;
     }
 }
