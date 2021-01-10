@@ -15,7 +15,7 @@ trait HasIidColumn
         parent::boot();
 
         static::creating(function ($model) {
-            $iidColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($model->getTable(), 'iid');
+            $iidColumnExist = Schema::connection(config('database.default'))->hasColumn($model->getTable(), 'iid');
 
             if (! $iidColumnExist) {
                 throw new Exception('The `iid` column was not found in `'.$model->getTable().'` table.');
