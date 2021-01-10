@@ -21,6 +21,11 @@ trait HasIidColumn
                 throw new Exception('The `iid` column was not found in `'.$model->getTable().'` table.');
             }
 
+            // check if iidColumn value is not null
+            if ($model[$model->iidColumn] == null) {
+                return;
+            }
+
             $latestModel = $model->where($model->iidColumn, '=', $model[$model->iidColumn])
                 ->where('iid', '!=', 'NULL')
                 ->orderBy('id', 'DESC')
