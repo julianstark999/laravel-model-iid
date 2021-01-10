@@ -61,7 +61,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             $table->string('name');
             $table->text('text');
 
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('iid')->nullable();
 
             $table->timestamps();

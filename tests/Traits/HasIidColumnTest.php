@@ -34,4 +34,12 @@ class HasIidColumnTest extends TestCase
 
         $this->assertEquals(101, $secondPost->iid);
     }
+
+    /** @test */
+    public function test_set_iid_when_iidColumn_value_is_null()
+    {
+        $post = Post::factory()->create();
+
+        $this->assertNull($post->iid);
+    }
 }
