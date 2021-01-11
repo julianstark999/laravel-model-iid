@@ -3,7 +3,6 @@
 namespace JulianStark999\LaravelModelIid\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Schema;
 use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 class Init extends Command
@@ -36,8 +35,7 @@ class Init extends Command
             return -2;
         }
 
-        $iidColumnExist = Schema::connection(env('DB_CONNECTION'))->hasColumn($modelClass->getTable(), 'iid');
-        if (! $iidColumnExist) {
+        if (! schema_has_iid_column($modelClass->getTable())) {
             $this->error('model class does not have an iid column');
 
             return -3;
