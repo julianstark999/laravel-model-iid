@@ -3,7 +3,7 @@
 namespace JulianStark999\LaravelModelIid\Traits;
 
 use Exception;
-use JulianStark999\LaravelModelIid\Exceptions\SchemaDoesNotHasIidColumnException;
+use JulianStark999\LaravelModelIid\Exceptions\SchemaDoesNotHasIidColumn;
 
 trait HasIidColumn
 {
@@ -17,7 +17,7 @@ trait HasIidColumn
         static::creating(function ($model) {
             $tableName = $model->getTable();
             if (! schema_has_iid_column($tableName)) {
-                throw new SchemaDoesNotHasIidColumnException($tableName);
+                throw new SchemaDoesNotHasIidColumn($tableName);
             }
 
             // check if iidColumn value is not null

@@ -2,9 +2,9 @@
 
 namespace JulianStark999\LaravelModelIid\Exceptions;
 
-use Exception;
+use InvalidArgumentException;
 
-class SchemaDoesNotHasIidColumnException extends Exception
+class SchemaDoesNotHasIidColumn extends InvalidArgumentException
 {
     public static function create(string $tableName)
     {
