@@ -3,8 +3,10 @@
 namespace JulianStark999\LaravelModelIid\Tests\Traits;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use JulianStark999\LaravelModelIid\Exceptions\SchemaDoesNotHasIidColumnException;
 use JulianStark999\LaravelModelIid\Tests\Models\Category;
 use JulianStark999\LaravelModelIid\Tests\Models\Post;
+use JulianStark999\LaravelModelIid\Tests\Models\PostWithoutColumn;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
 
 class HasIidColumnTest extends TestCase
@@ -41,5 +43,13 @@ class HasIidColumnTest extends TestCase
         $post = Post::factory()->create();
 
         $this->assertNull($post->iid);
+    }
+
+    /** @test */
+    public function test_set_iid_when_column_not_exists()
+    {
+        $this->expectException(SchemaDoesNotHasIidColumnException::class);
+
+        PostWithoutColumn::factory()->create();
     }
 }
