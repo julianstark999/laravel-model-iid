@@ -8,10 +8,10 @@ use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 class Generate extends Command
 {
     /** @var string */
-    protected $signature = 'iid:generate {className}';
+    protected $signature = 'iid:generate {className : Path to Model Class}';
 
     /** @var string */
-    protected $description = 'generates missing iids for a model';
+    protected $description = 'generates missing iid for a model';
 
     public function handle(): int
     {
@@ -38,7 +38,7 @@ class Generate extends Command
             return -3;
         }
 
-        $this->info('Generating iids started');
+        $this->info('Generating iid started');
 
         $modelClass->whereNull('iid')->cursor()->each(function ($row) use ($modelClass): void {
             $latestModel = $row->where($modelClass->iidColumn, $row[$modelClass->iidColumn])
@@ -51,7 +51,7 @@ class Generate extends Command
             ]);
         });
 
-        $this->info('Generating iids finished');
+        $this->info('Generating iid finished');
 
         return 0;
     }
