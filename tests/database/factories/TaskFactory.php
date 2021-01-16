@@ -3,16 +3,17 @@
 namespace JulianStark999\LaravelModelIid\Tests\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JulianStark999\LaravelModelIid\Tests\Models\Category;
+use JulianStark999\LaravelModelIid\Tests\Models\Task;
 
-class CategoryFactory extends Factory
+class TaskFactory extends Factory
 {
-    protected $model = Category::class;
+    protected $model = Task::class;
 
     public function definition()
     {
         return [
             'name' => $this->faker->words(3, true),
+            'text' => $this->faker->paragraph,
         ];
     }
 }

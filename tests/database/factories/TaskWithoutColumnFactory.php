@@ -3,11 +3,11 @@
 namespace JulianStark999\LaravelModelIid\Tests\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JulianStark999\LaravelModelIid\Tests\Models\PostWithoutColumn;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
 
-class PostWithoutColumnFactory extends Factory
+class TaskWithoutColumnFactory extends Factory
 {
-    protected $model = PostWithoutColumn::class;
+    protected $model = TaskWithoutColumn::class;
 
     public function definition()
     {
