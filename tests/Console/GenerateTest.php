@@ -14,7 +14,7 @@ class GenerateTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_without_iids(): void
+    public function test_without_iid(): void
     {
         $project = Project::factory()->create();
 
@@ -29,7 +29,7 @@ class GenerateTest extends TestCase
         $this->assertEquals($project->tasks->count(), $project->tasks->last()->iid);
     }
 
-    public function test_with_some_iids(): void
+    public function test_with_some_iid(): void
     {
         $project = Project::factory()->create();
 

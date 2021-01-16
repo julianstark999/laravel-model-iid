@@ -50,7 +50,7 @@ $table->unique(['project_id', 'iid']);
 ### Commands
 
 #### iid:generate
-The `iid:generate` command generates missing iids for existing models
+The `iid:generate` command generates missing iid for existing models
 ```bash
 php artisan iid:generate {className}
 
@@ -59,7 +59,7 @@ php artisan iid:generate "App\Models\Task"
 ```
 
 #### iid:init
-The `iid:init` command initializes the iids for existing models by using the id column
+The `iid:init` command initializes the iid for existing models by using the id column
 ```bash
 php artisan iid:generate {className}
 

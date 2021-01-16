@@ -8,7 +8,7 @@ use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 class Init extends Command
 {
     /** @var string */
-    protected $signature = 'iid:init {className}';
+    protected $signature = 'iid:init {className : Path to Model Class}';
 
     /** @var string */
     protected $description = 'initialize iid for a model';
@@ -38,7 +38,7 @@ class Init extends Command
             return -3;
         }
 
-        $this->info('Initializing iids started');
+        $this->info('Initializing iid started');
 
         $modelClass->whereNull('iid')->cursor()->each(function ($row): void {
             $row->update([
@@ -46,7 +46,7 @@ class Init extends Command
             ]);
         });
 
-        $this->info('Initializing iids finished');
+        $this->info('Initializing iid finished');
 
         return 0;
     }
