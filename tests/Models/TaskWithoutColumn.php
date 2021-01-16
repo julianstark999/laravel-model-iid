@@ -16,7 +16,7 @@ class TaskWithoutColumn extends Model
 
     protected $guarded = [];
 
-    protected static function newFactory()
+    protected static function newFactory(): TaskWithoutColumnFactory
     {
         return TaskWithoutColumnFactory::new();
     }

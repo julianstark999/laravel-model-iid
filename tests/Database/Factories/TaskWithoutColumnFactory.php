@@ -9,7 +9,7 @@ class TaskWithoutColumnFactory extends Factory
 {
     protected $model = TaskWithoutColumn::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->words(3, true),

@@ -5,6 +5,7 @@
 **Laravel Model Iid** provides the functionality to have an additional internal ID (displayable in the UI), that's unique in the scope of a relationship
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
+![](https://github.com/julianstark999/laravel-model-iid/workflows/Run%20Tests/badge.svg?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
 
 ## Installation

@@ -13,10 +13,7 @@ class Generate extends Command
     /** @var string */
     protected $description = 'generates missing iids for a model';
 
-    /**
-     * @return int
-     */
-    public function handle()
+    public function handle(): int
     {
         $className = $this->argument('className');
 
@@ -43,7 +40,7 @@ class Generate extends Command
 
         $this->info('Generating iids started');
 
-        $modelClass->whereNull('iid')->cursor()->each(function ($row) use ($modelClass) {
+        $modelClass->whereNull('iid')->cursor()->each(function ($row) use ($modelClass): void {
             $latestModel = $row->where($modelClass->iidColumn, $row[$modelClass->iidColumn])
                 ->whereNotNull('iid')
                 ->orderBy('id', 'DESC')

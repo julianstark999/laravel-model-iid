@@ -14,8 +14,7 @@ class GenerateTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function test_without_iids()
+    public function test_without_iids(): void
     {
         $project = Project::factory()->create();
 
@@ -30,8 +29,7 @@ class GenerateTest extends TestCase
         $this->assertEquals($project->tasks->count(), $project->tasks->last()->iid);
     }
 
-    /** @test */
-    public function test_with_some_iids()
+    public function test_with_some_iids(): void
     {
         $project = Project::factory()->create();
 
@@ -50,24 +48,21 @@ class GenerateTest extends TestCase
         $this->assertEquals($project->tasks->count() + 1, $task->iid);
     }
 
-    /** @test */
-    public function test_with_undefined_class()
+    public function test_with_undefined_class(): void
     {
         $return = Artisan::call('iid:generate', ['className' => "App\Models\Undefined"]);
 
         $this->assertEquals(-1, $return);
     }
 
-    /** @test */
-    public function test_with_model_not_uses_trait()
+    public function test_with_model_not_uses_trait(): void
     {
         $return = Artisan::call('iid:generate', ['className' => TaskWithoutTrait::class]);
 
         $this->assertEquals(-2, $return);
     }
 
-    /** @test */
-    public function test_with_table_not_has_column()
+    public function test_with_table_not_has_column(): void
     {
         $return = Artisan::call('iid:generate', ['className' => TaskWithoutColumn::class]);
 

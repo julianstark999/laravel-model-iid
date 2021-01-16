@@ -13,16 +13,14 @@ class HasIidColumnTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function test_set_iid_first_row()
+    public function test_set_iid_first_row(): void
     {
         $task = Task::factory()->for(Project::factory()->create())->create();
 
         $this->assertEquals(1, $task->iid);
     }
 
-    /** @test */
-    public function test_set_iid_new_row()
+    public function test_set_iid_new_row(): void
     {
         $project = Project::factory()->create();
 
@@ -35,16 +33,14 @@ class HasIidColumnTest extends TestCase
         $this->assertEquals(101, $task->iid);
     }
 
-    /** @test */
-    public function test_set_iid_when_iidColumn_value_is_null()
+    public function test_set_iid_when_iidColumn_value_is_null(): void
     {
         $task = Task::factory()->create();
 
         $this->assertNull($task->iid);
     }
 
-    /** @test */
-    public function test_set_iid_when_column_not_exists()
+    public function test_set_iid_when_column_not_exists(): void
     {
         $this->expectException(SchemaDoesNotHasIidColumn::class);
 
