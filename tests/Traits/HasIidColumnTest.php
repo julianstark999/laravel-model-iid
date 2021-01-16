@@ -4,9 +4,9 @@ namespace JulianStark999\LaravelModelIid\Tests\Traits;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JulianStark999\LaravelModelIid\Exceptions\SchemaDoesNotHasIidColumn;
-use JulianStark999\LaravelModelIid\Tests\Models\Category;
-use JulianStark999\LaravelModelIid\Tests\Models\Post;
-use JulianStark999\LaravelModelIid\Tests\Models\PostWithoutColumn;
+use JulianStark999\LaravelModelIid\Tests\Models\Project;
+use JulianStark999\LaravelModelIid\Tests\Models\Task;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
 
 class HasIidColumnTest extends TestCase
@@ -16,33 +16,31 @@ class HasIidColumnTest extends TestCase
     /** @test */
     public function test_set_iid_first_row()
     {
-        $category = Category::factory()->create();
-        $post = Post::factory()->for($category)->create();
+        $task = Task::factory()->for(Project::factory()->create())->create();
 
-        $this->assertEquals(1, $post->iid);
+        $this->assertEquals(1, $task->iid);
     }
 
     /** @test */
     public function test_set_iid_new_row()
     {
-        $category = Category::factory()->create();
+        $project = Project::factory()->create();
 
-        $firstPost = Post::factory()->for($category)->create();
-        $firstPost->update([
+        Task::factory()->for($project)->create()->update([
             'iid' => 100,
         ]);
 
-        $secondPost = Post::factory()->for($category)->create();
+        $task = Task::factory()->for($project)->create();
 
-        $this->assertEquals(101, $secondPost->iid);
+        $this->assertEquals(101, $task->iid);
     }
 
     /** @test */
     public function test_set_iid_when_iidColumn_value_is_null()
     {
-        $post = Post::factory()->create();
+        $task = Task::factory()->create();
 
-        $this->assertNull($post->iid);
+        $this->assertNull($task->iid);
     }
 
     /** @test */
@@ -50,6 +48,6 @@ class HasIidColumnTest extends TestCase
     {
         $this->expectException(SchemaDoesNotHasIidColumn::class);
 
-        PostWithoutColumn::factory()->create();
+        TaskWithoutColumn::factory()->create();
     }
 }

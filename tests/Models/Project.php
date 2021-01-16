@@ -4,23 +4,23 @@ namespace JulianStark999\LaravelModelIid\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use JulianStark999\LaravelModelIid\Tests\Database\Factories\CategoryFactory;
+use JulianStark999\LaravelModelIid\Tests\Database\Factories\ProjectFactory;
 
-class Category extends Model
+class Project extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
+    protected $table = 'projects';
 
     protected $guarded = [];
 
-    public function posts()
+    public function tasks()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Task::class);
     }
 
     protected static function newFactory()
     {
-        return CategoryFactory::new();
+        return ProjectFactory::new();
     }
 }

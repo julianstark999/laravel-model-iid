@@ -4,9 +4,9 @@ namespace JulianStark999\LaravelModelIid\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PostWithoutTrait extends Model
+class TaskWithoutTrait extends Model
 {
-    protected $table = 'test_posts';
+    protected $table = 'tasks2';
 
     protected $guarded = [];
 }

@@ -49,30 +49,30 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function setUpDatabase($app)
     {
-        $app['db']->connection()->getSchemaBuilder()->create('categories', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
 
             $table->timestamps();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('posts', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('text');
 
-            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('project_id')->nullable();
             $table->unsignedInteger('iid')->nullable();
 
             $table->timestamps();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('test_posts', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('tasks2', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('text');
 
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('project_id')->nullable();
 
             $table->timestamps();
         });

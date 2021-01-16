@@ -25,12 +25,12 @@ composer require julianstark999/laravel-model-iid
 use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 
-class Post extends Model
+class Task extends Model
 {
     use HasIidColumn;
 
 
-    public $iidColumn = 'category_id';
+    public $iidColumn = 'project_id';
 
     
     ...
@@ -43,7 +43,7 @@ class Post extends Model
 $table->unsignedInteger('iid')->nullable();
 
 // optional (should only be defined for new tables or after generating iids for existing entries)
-$table->unique(['category_id', 'iid']);
+$table->unique(['project_id', 'iid']);
 ```
 
 ### Commands
@@ -54,7 +54,7 @@ The `iid:generate` command generates missing iids for existing models
 php artisan iid:generate {className}
 
 # example
-php artisan iid:generate "App\Models\Post"
+php artisan iid:generate "App\Models\Task"
 ```
 
 #### iid:init
@@ -63,7 +63,7 @@ The `iid:init` command initializes the iids for existing models by using the id 
 php artisan iid:generate {className}
 
 # example
-php artisan iid:init "App\Models\Post"
+php artisan iid:init "App\Models\Task"
 ```
 *Recommended using if you already use the `id` column for display*
 

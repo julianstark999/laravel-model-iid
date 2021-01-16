@@ -4,10 +4,10 @@ namespace JulianStark999\LaravelModelIid\Tests\Console;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
-use JulianStark999\LaravelModelIid\Tests\Models\Category;
-use JulianStark999\LaravelModelIid\Tests\Models\Post;
-use JulianStark999\LaravelModelIid\Tests\Models\PostWithoutColumn;
-use JulianStark999\LaravelModelIid\Tests\Models\PostWithoutTrait;
+use JulianStark999\LaravelModelIid\Tests\Models\Project;
+use JulianStark999\LaravelModelIid\Tests\Models\Task;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutTrait;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
 
 class InitTest extends TestCase
@@ -17,38 +17,38 @@ class InitTest extends TestCase
     /** @test */
     public function test_without_iids()
     {
-        $category = Category::factory()->create();
+        $project = Project::factory()->create();
 
-        Post::factory()->count(5)->for($category)->create();
+        Task::factory()->count(5)->for($project)->create();
 
-        $category->posts()->update([
+        $project->tasks()->update([
             'iid' => null,
         ]);
 
-        Artisan::call('iid:init', ['className' => Post::class]);
+        Artisan::call('iid:init', ['className' => Task::class]);
 
-        $lastPost = $category->posts->last();
-        $this->assertEquals($lastPost->id, $lastPost->iid);
+        $lastTask = $project->tasks->last();
+        $this->assertEquals($lastTask->id, $lastTask->iid);
     }
 
     /** @test */
     public function test_with_some_iids()
     {
-        $category = Category::factory()->create();
+        $project = Project::factory()->create();
 
-        Post::factory()->count(2)->for($category)->create();
-        $post = Post::factory()->for($category)->create();
-        Post::factory()->count(2)->for($category)->create();
+        Task::factory()->count(2)->for($project)->create();
+        $task = Task::factory()->for($project)->create();
+        Task::factory()->count(2)->for($project)->create();
 
-        $post->update([
+        $task->update([
             'iid' => null,
         ]);
 
-        Artisan::call('iid:init', ['className' => Post::class]);
+        Artisan::call('iid:init', ['className' => Task::class]);
 
-        $post->refresh();
+        $task->refresh();
 
-        $this->assertEquals($post->id, $post->iid);
+        $this->assertEquals($task->id, $task->iid);
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class InitTest extends TestCase
     /** @test */
     public function test_with_model_not_uses_trait()
     {
-        $return = Artisan::call('iid:init', ['className' => PostWithoutTrait::class]);
+        $return = Artisan::call('iid:init', ['className' => TaskWithoutTrait::class]);
 
         $this->assertEquals(-2, $return);
     }
@@ -70,7 +70,7 @@ class InitTest extends TestCase
     /** @test */
     public function test_with_table_not_has_column()
     {
-        $return = Artisan::call('iid:init', ['className' => PostWithoutColumn::class]);
+        $return = Artisan::call('iid:init', ['className' => TaskWithoutColumn::class]);
 
         $this->assertEquals(-3, $return);
     }
