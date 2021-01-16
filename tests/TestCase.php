@@ -49,14 +49,14 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function setUpDatabase($app)
     {
-        $app['db']->connection()->getSchemaBuilder()->create('projects', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('projects', function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');
 
             $table->timestamps();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('tasks', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('tasks', function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');
             $table->text('text');
@@ -67,7 +67,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             $table->timestamps();
         });
 
-        $app['db']->connection()->getSchemaBuilder()->create('tasks2', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('tasks2', function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');
             $table->text('text');

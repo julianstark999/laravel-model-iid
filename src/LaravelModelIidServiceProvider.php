@@ -8,7 +8,7 @@ use JulianStark999\LaravelModelIid\Console\Init;
 
 class LaravelModelIidServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([

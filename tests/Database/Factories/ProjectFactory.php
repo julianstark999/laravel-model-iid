@@ -9,7 +9,7 @@ class ProjectFactory extends Factory
 {
     protected $model = Project::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->words(3, true),

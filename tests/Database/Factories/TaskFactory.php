@@ -9,7 +9,7 @@ class TaskFactory extends Factory
 {
     protected $model = Task::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->words(3, true),

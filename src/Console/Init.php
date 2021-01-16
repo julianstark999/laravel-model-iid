@@ -13,10 +13,7 @@ class Init extends Command
     /** @var string */
     protected $description = 'initialize iid for a model';
 
-    /**
-     * @return int
-     */
-    public function handle()
+    public function handle(): int
     {
         $className = $this->argument('className');
 
@@ -43,7 +40,7 @@ class Init extends Command
 
         $this->info('Initializing iids started');
 
-        $modelClass->whereNull('iid')->cursor()->each(function ($row) {
+        $modelClass->whereNull('iid')->cursor()->each(function ($row): void {
             $row->update([
                 'iid' => $row->id,
             ]);

@@ -10,11 +10,11 @@ trait HasIidColumn
     /**
      * @throws Exception
      */
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::creating(function ($model): void {
             $tableName = $model->getTable();
             if (! schema_has_iid_column($tableName)) {
                 throw SchemaDoesNotHasIidColumn::create($tableName);

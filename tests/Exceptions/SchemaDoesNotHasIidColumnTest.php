@@ -7,8 +7,7 @@ use JulianStark999\LaravelModelIid\Tests\TestCase;
 
 class SchemaDoesNotHasIidColumnTest extends TestCase
 {
-    /** @test */
-    public function test_message()
+    public function test_message(): void
     {
         try {
             throw SchemaDoesNotHasIidColumn::create('projects');
