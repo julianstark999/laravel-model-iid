@@ -17,7 +17,7 @@ trait HasIidColumn
         static::creating(function ($model) {
             $tableName = $model->getTable();
             if (! schema_has_iid_column($tableName)) {
-                throw new SchemaDoesNotHasIidColumn($tableName);
+                throw SchemaDoesNotHasIidColumn::create($tableName);
             }
 
             // check if iidColumn value is not null
