@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-model-iid` will be documented in this file
 
-## Upcoming releases
+## 0.0.4 - 2021-01-18
 ### modified
 - example from Category Post to Project Task
 - Commands Parameter documentation
