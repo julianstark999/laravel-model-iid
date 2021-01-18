@@ -30,7 +30,7 @@ trait HasIidColumn
                 ->orderBy('id', 'DESC')
                 ->first();
 
-            $model['iid'] = $latestModel ? ($latestModel->iid + 1) : 1;
+            $model['iid'] = $latestModel ? $latestModel->iid + 1 : 1;
         });
     }
 }
