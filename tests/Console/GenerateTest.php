@@ -5,7 +5,7 @@ namespace JulianStark999\LaravelModelIid\Tests\Console;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use JulianStark999\LaravelModelIid\Tests\Models\Project;
-use JulianStark999\LaravelModelIid\Tests\Models\Task;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithColumn;
 use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
 use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutTrait;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
@@ -18,13 +18,13 @@ class GenerateTest extends TestCase
     {
         $project = Project::factory()->create();
 
-        Task::factory()->count(5)->for($project)->create();
+        TaskWithColumn::factory()->count(5)->for($project)->create();
 
         $project->tasks()->update([
             'iid' => null,
         ]);
 
-        Artisan::call('iid:generate', ['className' => Task::class]);
+        Artisan::call('iid:generate', ['className' => TaskWithColumn::class]);
 
         $this->assertEquals($project->tasks->count(), $project->tasks->last()->iid);
     }
@@ -33,15 +33,15 @@ class GenerateTest extends TestCase
     {
         $project = Project::factory()->create();
 
-        Task::factory()->count(2)->for($project)->create();
-        $task = Task::factory()->for($project)->create();
-        Task::factory()->count(2)->for($project)->create();
+        TaskWithColumn::factory()->count(2)->for($project)->create();
+        $task = TaskWithColumn::factory()->for($project)->create();
+        TaskWithColumn::factory()->count(2)->for($project)->create();
 
         $task->update([
             'iid' => null,
         ]);
 
-        Artisan::call('iid:generate', ['className' => Task::class]);
+        Artisan::call('iid:generate', ['className' => TaskWithColumn::class]);
 
         $task->refresh();
 

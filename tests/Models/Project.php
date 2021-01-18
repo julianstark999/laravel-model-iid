@@ -19,7 +19,7 @@ class Project extends Model
 
     public function tasks(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(TaskWithColumn::class);
     }
 
     protected static function newFactory(): ProjectFactory
