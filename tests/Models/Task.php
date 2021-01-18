@@ -13,10 +13,13 @@ class Task extends Model
     use HasFactory;
     use HasIidColumn;
 
+    /** @var string */
     public $iidColumn = 'project_id';
 
+    /** @var string */
     protected $table = 'tasks';
 
+    /** @var array */
     protected $guarded = [];
 
     public function project(): BelongsTo

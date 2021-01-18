@@ -11,8 +11,10 @@ class Project extends Model
 {
     use HasFactory;
 
+    /** @var string */
     protected $table = 'projects';
 
+    /** @var array */
     protected $guarded = [];
 
     public function tasks(): HasMany
