@@ -1,8 +1,7 @@
 <p align="center"><img src="https://banners.beyondco.de/laravel-model-iid.png?theme=light&packageManager=composer+require&packageName=julianstark999%2Flaravel-model-iid&pattern=circuitBoard&style=style_2&description=&md=1&showWatermark=0&fontSize=100px&images=database&widths=350&heights=350" alt="Social Card of Laravel Model Iid"></p>
 
-# Laravel Model Iid
-
-**Laravel Model Iid** provides the functionality to have an additional internal ID (displayable in the UI), that's unique in the scope of a relationship
+# Add an internal ID to your Eloquent Model
+This Laravel package provides the functionality to have an internal ID (displayable in the UI), that's unique in the scope of a relationship
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/julianstark999/laravel-model-iid.svg?style=flat-square)](https://packagist.org/packages/julianstark999/laravel-model-iid)
 ![](https://github.com/julianstark999/laravel-model-iid/workflows/Run%20Tests/badge.svg?branch=master)
@@ -50,6 +49,7 @@ $table->unique(['project_id', 'iid']);
 ### Commands
 
 #### iid:generate
+
 The `iid:generate` command generates missing iid for existing models
 ```bash
 php artisan iid:generate {className}
@@ -59,6 +59,7 @@ php artisan iid:generate "App\Models\Task"
 ```
 
 #### iid:init
+
 The `iid:init` command initializes the iid for existing models by using the id column
 ```bash
 php artisan iid:generate {className}
