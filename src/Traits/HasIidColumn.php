@@ -21,7 +21,7 @@ trait HasIidColumn
             }
 
             // check if iidColumn value is not null
-            if ($model[$model->iidColumn] == null) {
+            if ($model[$model->iidColumn] === null) {
                 return;
             }
 
