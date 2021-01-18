@@ -1,12 +1,14 @@
 {
     "name": "julianstark999/laravel-model-iid",
-    "description": "Laravel Model Iid",
+    "description": "Add an internal ID to your Eloquent Model",
     "keywords": [
         "Julian Stark",
         "julianstark999",
-        "laravel-model-iid",
         "laravel",
-        "iid"
+        "laravel-model-iid",
+        "iid",
+        "internal id",
+        "additional id"
     ],
     "homepage": "https://github.com/julianstark999/laravel-model-iid",
     "license": "MIT",
