@@ -12,8 +12,10 @@ class TaskWithoutColumn extends Model
     use HasFactory;
     use HasIidColumn;
 
+    /** @var string */
     protected $table = 'tasks2';
 
+    /** @var array */
     protected $guarded = [];
 
     protected static function newFactory(): TaskWithoutColumnFactory

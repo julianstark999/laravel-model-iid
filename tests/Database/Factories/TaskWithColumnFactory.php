@@ -3,11 +3,11 @@
 namespace JulianStark999\LaravelModelIid\Tests\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JulianStark999\LaravelModelIid\Tests\Models\Task;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithColumn;
 
-class TaskFactory extends Factory
+class TaskWithColumnFactory extends Factory
 {
-    protected $model = Task::class;
+    protected $model = TaskWithColumn::class;
 
     public function definition(): array
     {

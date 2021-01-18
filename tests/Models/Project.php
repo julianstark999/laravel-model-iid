@@ -11,13 +11,15 @@ class Project extends Model
 {
     use HasFactory;
 
+    /** @var string */
     protected $table = 'projects';
 
+    /** @var array */
     protected $guarded = [];
 
     public function tasks(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(TaskWithColumn::class);
     }
 
     protected static function newFactory(): ProjectFactory

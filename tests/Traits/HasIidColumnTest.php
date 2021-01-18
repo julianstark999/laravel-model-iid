@@ -5,7 +5,7 @@ namespace JulianStark999\LaravelModelIid\Tests\Traits;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JulianStark999\LaravelModelIid\Exceptions\SchemaDoesNotHasIidColumn;
 use JulianStark999\LaravelModelIid\Tests\Models\Project;
-use JulianStark999\LaravelModelIid\Tests\Models\Task;
+use JulianStark999\LaravelModelIid\Tests\Models\TaskWithColumn;
 use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
 
@@ -15,7 +15,7 @@ class HasIidColumnTest extends TestCase
 
     public function test_set_iid_first_row(): void
     {
-        $task = Task::factory()->for(Project::factory()->create())->create();
+        $task = TaskWithColumn::factory()->for(Project::factory()->create())->create();
 
         $this->assertEquals(1, $task->iid);
     }
@@ -24,18 +24,18 @@ class HasIidColumnTest extends TestCase
     {
         $project = Project::factory()->create();
 
-        Task::factory()->for($project)->create()->update([
+        TaskWithColumn::factory()->for($project)->create()->update([
             'iid' => 100,
         ]);
 
-        $task = Task::factory()->for($project)->create();
+        $task = TaskWithColumn::factory()->for($project)->create();
 
         $this->assertEquals(101, $task->iid);
     }
 
     public function test_set_iid_when_iidColumn_value_is_null(): void
     {
-        $task = Task::factory()->create();
+        $task = TaskWithColumn::factory()->create();
 
         $this->assertNull($task->iid);
     }

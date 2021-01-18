@@ -21,7 +21,7 @@ trait HasIidColumn
             }
 
             // check if iidColumn value is not null
-            if ($model[$model->iidColumn] == null) {
+            if ($model[$model->iidColumn] === null) {
                 return;
             }
 
@@ -30,7 +30,7 @@ trait HasIidColumn
                 ->orderBy('id', 'DESC')
                 ->first();
 
-            $model['iid'] = $latestModel ? ($latestModel->iid + 1) : 1;
+            $model['iid'] = $latestModel ? $latestModel->iid + 1 : 1;
         });
     }
 }

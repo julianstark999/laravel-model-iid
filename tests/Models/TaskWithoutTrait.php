@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaskWithoutTrait extends Model
 {
-    protected $table = 'tasks2';
+    /** @var string */
+    protected $table = 'tasks';
 
+    /** @var array */
     protected $guarded = [];
 }
