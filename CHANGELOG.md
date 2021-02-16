@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-model-iid` will be documented in this file
 
+## 0.0.5 - 2021-02-16
+### modified
+- Fixed issue in `iid:generate`
+
 ## 0.0.4 - 2021-01-18
 ### modified
 - example from Category Post to Project Task
