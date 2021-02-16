@@ -43,7 +43,7 @@ class Generate extends Command
         $modelClass->whereNull('iid')->cursor()->each(function ($row) use ($modelClass): void {
             $latestModel = $row->where($modelClass->iidColumn, $row[$modelClass->iidColumn])
                 ->whereNotNull('iid')
-                ->orderBy('id', 'DESC')
+                ->orderBy('iid', 'DESC')
                 ->first();
 
             $row->update([
