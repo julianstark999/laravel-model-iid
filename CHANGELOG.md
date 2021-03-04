@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-model-iid` will be documented in this file
 
+## 0.1.0 - 2021-03-04
+### added
+- now using [Spatie Laravel Package Tools](https://github.com/spatie/laravel-package-tools)
+
+### modified
+- implement pslam fixes
+
+## removed
+- dropped support for PHP 7.3
+
 ## 0.0.5 - 2021-02-16
 ### modified
 - Fixed issue in `iid:generate`
