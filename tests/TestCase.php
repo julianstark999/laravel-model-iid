@@ -4,7 +4,6 @@ namespace JulianStark999\LaravelModelIid\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Application;
 use JulianStark999\LaravelModelIid\LaravelModelIidServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
