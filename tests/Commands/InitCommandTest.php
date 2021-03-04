@@ -69,4 +69,18 @@ class InitCommandTest extends TestCase
 
         $this->assertEquals(-3, $return);
     }
+
+    public function test_with_className_equals_null(): void
+    {
+        $return = Artisan::call('iid:init', ['className' => null]);
+
+        $this->assertEquals(-4, $return);
+    }
+
+    public function test_with_className_equals_array(): void
+    {
+        $return = Artisan::call('iid:init', ['className' => ['a']]);
+
+        $this->assertEquals(-4, $return);
+    }
 }

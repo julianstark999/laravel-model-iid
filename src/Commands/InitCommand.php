@@ -3,6 +3,7 @@
 namespace JulianStark999\LaravelModelIid\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
 class InitCommand extends Command
@@ -10,12 +11,18 @@ class InitCommand extends Command
     /** @var string */
     protected $signature = 'iid:init {className : Path to Model Class}';
 
-    /** @var string */
+    /** @var string|null */
     protected $description = 'initialize iid for a model';
 
     public function handle(): int
     {
         $className = $this->argument('className');
+
+        if (! is_string($className)) {
+            $this->error('className is not a string');
+
+            return -4;
+        }
 
         if (! class_exists($className)) {
             $this->error('model class does not exists');
@@ -40,7 +47,7 @@ class InitCommand extends Command
 
         $this->info('Initializing iid started');
 
-        $modelClass->whereNull('iid')->cursor()->each(function ($row): void {
+        $modelClass->whereNull('iid')->cursor()->each(function (Model $row): void {
             $row->update([
                 'iid' => $row->id,
             ]);

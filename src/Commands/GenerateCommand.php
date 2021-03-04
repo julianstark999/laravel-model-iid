@@ -10,7 +10,7 @@ class GenerateCommand extends Command
     /** @var string */
     protected $signature = 'iid:generate {className : Path to Model Class}';
 
-    /** @var string */
+    /** @var string|null */
     protected $description = 'generates missing iid for a model';
 
     public function handle(): int
