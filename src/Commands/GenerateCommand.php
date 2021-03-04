@@ -1,11 +1,11 @@
 <?php
 
-namespace JulianStark999\LaravelModelIid\Console;
+namespace JulianStark999\LaravelModelIid\Commands;
 
 use Illuminate\Console\Command;
 use JulianStark999\LaravelModelIid\Traits\HasIidColumn;
 
-class Generate extends Command
+class GenerateCommand extends Command
 {
     /** @var string */
     protected $signature = 'iid:generate {className : Path to Model Class}';
