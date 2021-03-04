@@ -2,24 +2,22 @@
 
 namespace JulianStark999\LaravelModelIid\Tests;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Application;
 use JulianStark999\LaravelModelIid\LaravelModelIidServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends Orchestra
 {
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->setUpDatabase($this->app);
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'JulianStark999\\LaravelTestsGenerator\\Tests\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
     }
 
-    /**
-     * @param Application $app
-     *
-     * @return array
-     */
     protected function getPackageProviders($app)
     {
         return [
@@ -27,11 +25,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
-    /**
-     * @param Application $app
-     *
-     * @return void
-     */
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('database.default', 'sqlite');
@@ -40,15 +33,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-    }
 
-    /**
-     * @param Application $app
-     *
-     * @return void
-     */
-    protected function setUpDatabase($app)
-    {
         $app['db']->connection()->getSchemaBuilder()->create('projects', function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');

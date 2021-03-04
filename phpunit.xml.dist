@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
-         backupGlobals="false"
+<phpunit backupGlobals="false"
          backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
          colors="true"
-         verbose="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="false"
+         verbose="true"
+>
+    <testsuites>
+        <testsuite name="laravel-model-iid">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
     <coverage>
         <include>
             <directory suffix=".php">src/</directory>
         </include>
+        <report>
+            <html outputDirectory="build/coverage"/>
+            <text outputFile="build/coverage.txt"/>
+            <clover outputFile="build/logs/clover.xml"/>
+        </report>
     </coverage>
-    <testsuites>
-        <testsuite name="Model Iid Test Suite">
-            <directory suffix="Test.php">tests</directory>
-        </testsuite>
-    </testsuites>
-    <php>
-        <env name="CACHE_DRIVER" value="array"/>
-    </php>
+    <logging>
+        <junit outputFile="build/report.junit.xml"/>
+    </logging>
 </phpunit>

@@ -2,19 +2,25 @@
 
 namespace JulianStark999\LaravelModelIid;
 
-use Illuminate\Support\ServiceProvider;
-use JulianStark999\LaravelModelIid\Console\Generate;
-use JulianStark999\LaravelModelIid\Console\Init;
+use JulianStark999\LaravelModelIid\Commands\GenerateCommand;
+use JulianStark999\LaravelModelIid\Commands\InitCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelModelIidServiceProvider extends ServiceProvider
+class LaravelModelIidServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void
+    public function configurePackage(Package $package): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Init::class,
-                Generate::class,
+        /*
+         * This class is a Package Service Provider
+         *
+         * More info: https://github.com/spatie/laravel-package-tools
+         */
+        $package
+            ->name('laravel-model-iid')
+            ->hasCommands([
+                InitCommand::class,
+                GenerateCommand::class,
             ]);
-        }
     }
 }

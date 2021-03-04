@@ -1,6 +1,6 @@
 <?php
 
-namespace JulianStark999\LaravelModelIid\Tests\Console;
+namespace JulianStark999\LaravelModelIid\Tests\Commands;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
@@ -10,7 +10,7 @@ use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutColumn;
 use JulianStark999\LaravelModelIid\Tests\Models\TaskWithoutTrait;
 use JulianStark999\LaravelModelIid\Tests\TestCase;
 
-class GenerateTest extends TestCase
+class InitCommandTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,9 +24,10 @@ class GenerateTest extends TestCase
             'iid' => null,
         ]);
 
-        Artisan::call('iid:generate', ['className' => TaskWithColumn::class]);
+        Artisan::call('iid:init', ['className' => TaskWithColumn::class]);
 
-        $this->assertEquals($project->tasks->count(), $project->tasks->last()->iid);
+        $lastTask = $project->tasks->last();
+        $this->assertEquals($lastTask->id, $lastTask->iid);
     }
 
     public function test_with_some_iid(): void
@@ -41,31 +42,45 @@ class GenerateTest extends TestCase
             'iid' => null,
         ]);
 
-        Artisan::call('iid:generate', ['className' => TaskWithColumn::class]);
+        Artisan::call('iid:init', ['className' => TaskWithColumn::class]);
 
         $task->refresh();
 
-        $this->assertEquals($project->tasks->count() + 1, $task->iid);
+        $this->assertEquals($task->id, $task->iid);
     }
 
     public function test_with_undefined_class(): void
     {
-        $return = Artisan::call('iid:generate', ['className' => "App\Models\Undefined"]);
+        $return = Artisan::call('iid:init', ['className' => "App\Models\Undefined"]);
 
         $this->assertEquals(-1, $return);
     }
 
     public function test_with_model_not_uses_trait(): void
     {
-        $return = Artisan::call('iid:generate', ['className' => TaskWithoutTrait::class]);
+        $return = Artisan::call('iid:init', ['className' => TaskWithoutTrait::class]);
 
         $this->assertEquals(-2, $return);
     }
 
     public function test_with_table_not_has_column(): void
     {
-        $return = Artisan::call('iid:generate', ['className' => TaskWithoutColumn::class]);
+        $return = Artisan::call('iid:init', ['className' => TaskWithoutColumn::class]);
 
         $this->assertEquals(-3, $return);
+    }
+
+    public function test_with_className_equals_null(): void
+    {
+        $return = Artisan::call('iid:init', ['className' => null]);
+
+        $this->assertEquals(-4, $return);
+    }
+
+    public function test_with_className_equals_array(): void
+    {
+        $return = Artisan::call('iid:init', ['className' => ['a']]);
+
+        $this->assertEquals(-4, $return);
     }
 }
