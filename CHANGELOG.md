@@ -9,7 +9,7 @@ All notable changes to `laravel-model-iid` will be documented in this file
 ### modified
 - implement pslam fixes
 
-## removed
+### removed
 - dropped support for PHP 7.3
 
 ## 0.0.5 - 2021-02-16
