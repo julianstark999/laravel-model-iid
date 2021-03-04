@@ -11,13 +11,10 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Model Iid Test Suite">
+        <testsuite name="laravel-model-iid">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
-    <php>
-        <env name="CACHE_DRIVER" value="array"/>
-    </php>
     <coverage>
         <include>
             <directory suffix=".php">src/</directory>
