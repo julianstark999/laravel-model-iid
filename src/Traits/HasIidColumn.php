@@ -27,7 +27,7 @@ trait HasIidColumn
 
             $latestModel = $model->where($model->iidColumn, '=', $model[$model->iidColumn])
                 ->where('iid', '!=', 'NULL')
-                ->orderBy('id', 'DESC')
+                ->orderBy('iid', 'DESC')
                 ->first();
 
             $model['iid'] = $latestModel ? $latestModel->iid + 1 : 1;
