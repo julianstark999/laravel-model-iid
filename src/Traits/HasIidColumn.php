@@ -28,7 +28,7 @@ trait HasIidColumn
 
             $latestModel = $model->when(
                 method_exists($model, 'forceDelete'),
-                fn(Builder $query) => $query->whereNull('deleted_at')->orWhereNotNull('deleted_at')
+                fn (Builder $query) => $query->whereNull('deleted_at')->orWhereNotNull('deleted_at')
             )
                 ->where($model->iidColumn, '=', $model[$model->iidColumn])
                 ->where('iid', '!=', 'NULL')
