@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-model-iid` will be documented in this file
 
+## 0.1.1 - 2021-08-02
+### added
+- take care of soft deleting
+
 ## 0.1.0 - 2021-03-04
 ### added
 - now using [Spatie Laravel Package Tools](https://github.com/spatie/laravel-package-tools)

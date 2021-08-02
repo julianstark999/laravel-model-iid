@@ -25,7 +25,11 @@ trait HasIidColumn
                 return;
             }
 
-            $latestModel = $model->where($model->iidColumn, '=', $model[$model->iidColumn])
+            $latestModel = $model->when(
+                method_exists($model, 'forceDelete'),
+                fn (Builder $query) => $query->withTrashed()
+            )
+                ->where($model->iidColumn, '=', $model[$model->iidColumn])
                 ->where('iid', '!=', 'NULL')
                 ->orderBy('iid', 'DESC')
                 ->first();
