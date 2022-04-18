@@ -13,16 +13,16 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
         'array_indentation' => true,
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
         'not_operator_with_successor_space' => true,
         'method_chaining_indentation' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => true,
         'no_whitespace_in_blank_line' => true,
         'phpdoc_scalar' => true,
         'unary_operator_spaces' => true,
@@ -33,6 +33,9 @@ return PhpCsFixer\Config::create()
         ],
         'blank_line_before_statement' => [
             'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
+        ],
+        'cast_spaces' => [
+            'space' => 'single'
         ],
         'concat_space' => [
             'spacing' => 'none'
